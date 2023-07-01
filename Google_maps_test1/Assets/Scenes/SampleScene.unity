@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -633,6 +633,7 @@ GameObject:
   - component: {fileID: 1828601336}
   - component: {fileID: 1828601339}
   - component: {fileID: 1828601338}
+  - component: {fileID: 1828601341}
   - component: {fileID: 1828601337}
   - component: {fileID: 1828601340}
   m_Layer: 5
@@ -677,10 +678,10 @@ MonoBehaviour:
   mapRawImage: {fileID: 0}
   strBaseURL: https://maps.googleapis.com/maps/api/staticmap?
   zoom: 14
-  mapWidth: 640
-  mapHeight: 500
-  strAPIKey: AIzaSyC-AIzaSyC-AIzaSyArwgGvNfSZE9rt79gru3aFiC_MZtN3Ga8
-  GPSlocation: {fileID: 0}
+  mapWidth: 400
+  mapHeight: 400
+  strAPIKey: AIzaSyBZGVUxZEEt2CFHet7uKjNWO0-9sYcOA5U
+  gpsLocation: {fileID: 0}
 --- !u!114 &1828601338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -723,7 +724,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1828601335}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c6c011f5feb46244b34cf6fdef14da4, type: 3}
   m_Name: 
@@ -733,3 +734,20 @@ MonoBehaviour:
   delay: 0
   maxtime: 5
   receiveGPS: 0
+--- !u!114 &1828601341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828601335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 917f2c40409ac4a41b989eb5ee96f880, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  latitude: 0
+  longitude: 0
+  delay: 3
+  maxTime: 5
+  receiveGps: 0

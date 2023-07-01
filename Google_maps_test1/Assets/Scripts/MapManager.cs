@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using UnityEngine.Timeline;
 
@@ -9,7 +10,7 @@ public class MapManager : MonoBehaviour
 {
     public RawImage mapRawImage;
 
-    [Header("¸Ê Á¤º¸ ¼³Á¤")]
+    [Header("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")]
     public string strBaseURL = "";
 
     public int zoom = 14;
@@ -17,7 +18,7 @@ public class MapManager : MonoBehaviour
     public int mapHeight;
     public string strAPIKey = "";
 
-    public GPSLocation GPSlocation;
+    [FormerlySerializedAs("GPSlocation")] public GPSLocate gpsLocation;
     private double latitude = 0;
     private double longitude = 0;
 
@@ -28,6 +29,7 @@ public class MapManager : MonoBehaviour
     void Start()
     {
         mapRawImage = GetComponent<RawImage>();
+        gpsLocation = GetComponent<GPSLocate>();
         StartCoroutine(WaitForSecond());
     }
 
@@ -35,8 +37,10 @@ public class MapManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        latitude = GPSlocation.latitude;
-        longitude = GPSlocation.longitude;
+        latitude = gpsLocation.latitude;
+        longitude = gpsLocation.longitude;
+        //Debug.Log("latitude  : " + latitude);
+        //Debug.Log("longitude  : " + longitude);
         //print("location" + latitude + " " + longitude);
     }
 
@@ -50,9 +54,10 @@ public class MapManager : MonoBehaviour
             {
                 save_latitude = latitude;
                 save_longitude = longitude;
+                Debug.Log("start Coroutine LoadMap");
                 StartCoroutine(LoadMap());
             }
-            print("3ÃÊ");
+            //print("3ï¿½ï¿½");
             yield return new WaitForSeconds(3f);
         }
         yield return new WaitForSeconds(1f);
@@ -70,9 +75,10 @@ public class MapManager : MonoBehaviour
 
         url = UnityWebRequest.UnEscapeURL(url);
         UnityWebRequest req = UnityWebRequestTexture.GetTexture(url);
-
-        yield return req.SendWebRequest(); //req°ª ¹ÝÈ¯!
-
-        mapRawImage.texture = DownloadHandlerTexture.GetContent(req); // ¸Ê >> ÀÌ¹ÌÁö¿¡ Àû¿ë
+        Debug.Log(req);
+        yield return req.SendWebRequest(); //reqï¿½ï¿½ ï¿½ï¿½È¯!
+        Debug.Log("yield return over send web request");
+        mapRawImage.texture = DownloadHandlerTexture.GetContent(req); // ï¿½ï¿½ >> ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        Debug.Log(mapRawImage.texture);
     }
 }
